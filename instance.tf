@@ -3,7 +3,7 @@ resource "aws_key_pair" "dove-key" {
     public_key = file("dovekey.pub")
 }
 
-resource "aws_instance" "dove_instance" {
+resource "aws_instance" "dove_inst" {
     ami = var.AMIS[var.REGION]
     instance_type = "t2.micro"
     availability_zone = var.ZONE1
@@ -21,8 +21,8 @@ resource "aws_instance" "dove_instance" {
 
     provisioner "remote-exec" {
         inline  = [
-            "chmod u+x /tmp/web.sh",
-            "sudo /tmp/web.sh"
+          "chmod u+x /tmp/web.sh",
+          "sudo /tmp/web.sh"
         ]
     }
 
